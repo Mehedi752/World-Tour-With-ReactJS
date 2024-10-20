@@ -1,12 +1,11 @@
 import { useState } from "react";
 
-const Country = ({ country, handleVisitedCountry }) => {
+const Country = ({ country, handleVisitedCountry, handleVisitedCountryFlags }) => {
     console.log(country);
     const {name, flags, population, area, cca3} = country;
     const [visited, setVisited] = useState(false);
     const handleVisited = () => {
         setVisited(!visited);
-        // alert("You are already visited this country!");
     }
 
     return (
@@ -18,6 +17,7 @@ const Country = ({ country, handleVisitedCountry }) => {
                 <p className="">Arear: {area}</p>
                 <p className="">Code: {cca3}</p>
                 <button onClick={() => handleVisitedCountry(country)} className="btn w-[120px] bg-blue-700 text-white">Mark Visited</button>
+                <button onClick={() => handleVisitedCountryFlags(flags.png)} className="btn w-[120px] bg-blue-700 text-white">Add Flag</button>
                 <button onClick={handleVisited} className="btn w-[120px] bg-blue-700 text-white"> {visited?"Visited":"Going"} </button>
                 { visited ? "You are already visited this country!" : "Okay Let's Goooo!!" }
             </div>

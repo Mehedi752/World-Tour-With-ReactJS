@@ -4,10 +4,16 @@ import Country from "./country";
 const Countries = () => {
     const [countries, setCountries] = useState([]);
     const [visitedCountries, setVisitedCountries] = useState([]);
+    const [visitedFlags, setVisitedFlags] = useState([]);
 
     const handleVisitedCountry = (country) => {
         const newVisitedCountries = [...visitedCountries, country];
         setVisitedCountries(newVisitedCountries);
+    }
+
+    const handleVisitedCountryFlags = (flag) => {
+        const newVisitedCountryFlags = [...visitedFlags, flag];
+        setVisitedFlags(newVisitedCountryFlags);
     }
 
     useEffect(() => {
@@ -15,7 +21,6 @@ const Countries = () => {
             const url = "https://restcountries.com/v3.1/all";
             const res = await fetch(url);
             const data = await res.json();
-            console.log(data);
             setCountries(data);
         };
         fetchData();
@@ -29,7 +34,17 @@ const Countries = () => {
                 <ul className="">
                     {
                         visitedCountries.map(country =>
-                            <li key = {country.cca3}> {country.name.common} </li>)
+                            <li key={country.cca3}> {country.name.common} </li>)
+                    }
+                </ul>
+            </div>
+
+            <div className="mb-5">
+                <h4 className="font-semibold text-yellow-400">Visited Country Flags:</h4>
+                <ul className="flex gap-3 mt-3">
+                    {
+                        visitedFlags.map(flag =>
+                            <img src={flag} alt="" className="w-[100px]" />)
                     }
                 </ul>
             </div>
@@ -39,6 +54,7 @@ const Countries = () => {
                     countries.map(country =>
                         <Country key={country.cca3}
                             handleVisitedCountry={handleVisitedCountry}
+                            handleVisitedCountryFlags={handleVisitedCountryFlags}
                             country={country}></Country>
                     )
                 }
