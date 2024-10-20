@@ -27,7 +27,7 @@ const Countries = () => {
     }, []);
 
     return (
-        <div>
+        <div className="px-5 lg:px-0">
             <h3 className="mb-5 text-center">Countries: {countries.length}</h3>
             <div className="mb-5">
                 <h4 className="font-semibold text-yellow-400">Visited Country:</h4>
@@ -41,7 +41,7 @@ const Countries = () => {
 
             <div className="mb-5">
                 <h4 className="font-semibold text-yellow-400">Visited Country Flags:</h4>
-                <ul className="flex gap-3 mt-3">
+                <ul className="flex flex-col md:flex-row gap-3 mt-3">
                     {
                         visitedFlags.map(flag =>
                             <img src={flag} alt="" className="w-[100px]" />)
@@ -49,7 +49,7 @@ const Countries = () => {
                 </ul>
             </div>
 
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
                     countries.map(country =>
                         <Country key={country.cca3}
